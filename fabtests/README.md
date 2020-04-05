@@ -30,6 +30,10 @@ building Fabtests from an official distribution tarball, there is no
 need to run `autogen.sh`; Fabtests distribution tarballs are already
 bootstrapped for you.
 
+```
+bash autogen.sh
+```
+
 Fabtests relies on being able to find an installed version of
 Libfabric. In some cases, Libfabric may be in default compiler /
 linker search paths, and you don't need to tell Fabtests where to find
@@ -74,7 +78,7 @@ penalty.
 Consider the following example:
 
 ```
-$ ./configure --with-libfabric=/opt/libfabric --prefix=/opt/fabtests && make -j 32 && sudo make install
+$ ./configure --with-libfabric=/opt/amazon/efa --prefix=/opt/fabtests && make -j 32 && sudo make install
 ```
 
 This will tell the Fabtests to look for Libfabric libraries in the
@@ -91,3 +95,12 @@ Tells the Fabtests that it should be able to find the Libfabric header
 files and libraries in default compiler / linker search paths
 (configure will abort if it is not able to find them), and to install
 Fabtests in `/opt/fabtests`.
+
+```
+server
+/opt/fabtests/bin/fi_rdm_tagged_bw -p efa -s fe80::894:a4ff:fe44:4ccf
+
+client
+/opt/fabtests/bin/fi_rdm_tagged_bw -p efa -s fe80::894:a4ff:fe44:4ccf fe80::894:a4ff:fe44:4ccf
+
+```
